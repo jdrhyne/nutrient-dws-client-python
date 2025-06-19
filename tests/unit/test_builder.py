@@ -1,6 +1,5 @@
 """Unit tests for Builder API."""
 
-
 from nutrient_dws.builder import BuildAPIWrapper
 
 
@@ -42,10 +41,7 @@ def test_builder_chaining():
 def test_builder_set_output_options():
     """Test setting output options."""
     builder = BuildAPIWrapper(None, "test.pdf")
-    result = builder.set_output_options(
-        metadata={"title": "Test Doc"},
-        optimize=True
-    )
+    result = builder.set_output_options(metadata={"title": "Test Doc"}, optimize=True)
 
     assert result is builder
     assert builder._output_options["metadata"]["title"] == "Test Doc"

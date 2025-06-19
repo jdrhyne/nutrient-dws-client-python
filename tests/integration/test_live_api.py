@@ -9,9 +9,10 @@ from nutrient_dws import NutrientClient
 
 try:
     from . import integration_config  # type: ignore[attr-defined]
+
     API_KEY = integration_config.API_KEY
-    BASE_URL = getattr(integration_config, 'BASE_URL', None)
-    TIMEOUT = getattr(integration_config, 'TIMEOUT', 60)
+    BASE_URL = getattr(integration_config, "BASE_URL", None)
+    TIMEOUT = getattr(integration_config, "TIMEOUT", 60)
 except ImportError:
     API_KEY = None
     BASE_URL = None
@@ -33,6 +34,7 @@ class TestLiveAPI:
     def sample_pdf_path(self):
         """Get path to sample PDF file for testing."""
         import os
+
         return os.path.join(os.path.dirname(__file__), "..", "data", "sample.pdf")
 
     def test_client_initialization(self):

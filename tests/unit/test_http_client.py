@@ -1,6 +1,5 @@
 """Unit tests for HTTPClient."""
 
-
 from nutrient_dws.http_client import HTTPClient
 
 

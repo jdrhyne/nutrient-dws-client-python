@@ -29,8 +29,8 @@ Out of scope for this version are:
 
 ### 1.3. References
 - **Nutrient DWS OpenAPI Specification**: https://dashboard.nutrient.io/assets/specs/public@1.9.0-dfc6ec1c1d008be3dcb81a72be6346b5.yml
-- **Nutrient DWS API Documentation & Guides**: https://www.nutrient.io/api/documentation/
-- **Target API Endpoint Base**: https://www.nutrient.io/api/processor-api/
+- **Nutrient DWS API Documentation & Guides**: https://www.nutrient.io/api/tools-overview/
+- **Target API Endpoint Base**: https://api.pspdfkit.com
 
 ## 2. Goals and Objectives
 - **Simplicity**: Provide a clean, Pythonic interface that abstracts the complexities of direct HTTP requests, authentication, and file handling.

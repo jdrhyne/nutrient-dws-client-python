@@ -52,5 +52,5 @@ def test_get_file_size_none():
     class DummyFile:
         pass
 
-    size = get_file_size(DummyFile())
+    size = get_file_size(DummyFile())  # type: ignore[arg-type]
     assert size is None

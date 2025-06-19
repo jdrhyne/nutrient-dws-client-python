@@ -8,7 +8,7 @@ import pytest
 from nutrient_dws import NutrientClient
 
 try:
-    from . import integration_config
+    from . import integration_config  # type: ignore[attr-defined]
     API_KEY = integration_config.API_KEY
     BASE_URL = getattr(integration_config, 'BASE_URL', None)
     TIMEOUT = getattr(integration_config, 'TIMEOUT', 60)

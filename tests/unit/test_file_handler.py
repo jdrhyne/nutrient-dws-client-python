@@ -1,14 +1,9 @@
 """Unit tests for file handling utilities."""
 
 import io
-from pathlib import Path
-
-import pytest
 
 from nutrient_dws.file_handler import (
     prepare_file_input,
-    save_file_output,
-    stream_file_content,
 )
 
 

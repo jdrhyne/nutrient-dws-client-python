@@ -3,12 +3,9 @@
 These tests require a valid API key configured in integration_config.py.
 """
 
-import os
 import pytest
-from pathlib import Path
 
 from nutrient_dws import NutrientClient
-from nutrient_dws.exceptions import AuthenticationError
 
 try:
     from . import integration_config
@@ -64,19 +61,19 @@ class TestLiveAPI:
     def test_convert_operation(self, client, sample_pdf_path, tmp_path):
         """Test a basic convert operation (example - adjust based on available tools)."""
         output_path = tmp_path / "output.pdf"
-        
+
         # This is an example - adjust based on actual available tools
         # result = client.convert_to_pdf(input_file=sample_pdf_path, output_path=str(output_path))
-        
+
         # assert output_path.exists()
         # assert output_path.stat().st_size > 0
 
     def test_builder_api_basic(self, client, sample_pdf_path):
         """Test basic builder API functionality."""
         builder = client.build(input_file=sample_pdf_path)
-        
+
         # Test that we can add steps without errors
         # This will need to be updated based on actual available tools
         # builder.add_step("example-tool", {})
-        
+
         assert builder is not None

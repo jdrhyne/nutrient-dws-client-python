@@ -43,3 +43,4 @@ Always run the quality checks above to ensure code meets standards.
 3. Write tests alongside implementation
 4. Update documentation/docstrings
 5. Run quality checks before marking tasks complete
+6. Use `gh` cli tool

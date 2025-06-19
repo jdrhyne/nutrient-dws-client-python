@@ -153,3 +153,6 @@ openapi_spec.yml
 
 .pixi
 .claude/settings.local.json
+
+# Integration test configuration
+tests/integration/integration_config.py

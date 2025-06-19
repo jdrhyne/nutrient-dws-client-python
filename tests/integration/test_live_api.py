@@ -30,12 +30,10 @@ class TestLiveAPI:
         client.close()
 
     @pytest.fixture
-    def sample_pdf_path(self, tmp_path):
-        """Create a simple PDF file for testing."""
-        pdf_content = b"%PDF-1.4\n1 0 obj<</Type/Catalog/Pages 2 0 R>>endobj 2 0 obj<</Type/Pages/Kids[3 0 R]/Count 1>>endobj 3 0 obj<</Type/Page/Parent 2 0 R/MediaBox[0 0 612 792]>>endobj xref 0 4 0000000000 65535 f 0000000010 00000 n 0000000053 00000 n 0000000125 00000 n trailer<</Size 4/Root 1 0 R>>startxref 177 %%EOF"
-        pdf_path = tmp_path / "test.pdf"
-        pdf_path.write_bytes(pdf_content)
-        return str(pdf_path)
+    def sample_pdf_path(self):
+        """Get path to sample PDF file for testing."""
+        import os
+        return os.path.join(os.path.dirname(__file__), "..", "data", "sample.pdf")
 
     def test_client_initialization(self):
         """Test that client initializes correctly with API key."""
@@ -60,9 +58,8 @@ class TestLiveAPI:
     @pytest.mark.skip(reason="Requires specific tool implementation")
     def test_convert_operation(self, client, sample_pdf_path, tmp_path):
         """Test a basic convert operation (example - adjust based on available tools)."""
-        output_path = tmp_path / "output.pdf"
-
         # This is an example - adjust based on actual available tools
+        # output_path = tmp_path / "output.pdf"
         # result = client.convert_to_pdf(input_file=sample_pdf_path, output_path=str(output_path))
 
         # assert output_path.exists()

@@ -41,7 +41,7 @@ jobs:
         python -m ruff format --check .
 
     - name: Run type checking with mypy
-      run: python -m mypy src tests
+      run: python -m mypy --python-version=${{ matrix.python-version }} src tests
 
     - name: Run tests with pytest
       run: python -m pytest -v --cov=nutrient_dws --cov-report=xml --cov-report=term

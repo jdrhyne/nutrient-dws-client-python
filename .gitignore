@@ -150,3 +150,6 @@ Thumbs.db
 # Project specific
 openapi_spec.yml
 .ruff_cache/
+
+.pixi
+.claude/settings.local.json

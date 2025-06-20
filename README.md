@@ -184,7 +184,7 @@ from nutrient_dws import (
     AuthenticationError,
     APIError,
     ValidationError,
-    TimeoutError,
+    NutrientTimeoutError,
     FileProcessingError
 )
 
@@ -196,7 +196,7 @@ except ValidationError as e:
     print(f"Invalid parameters: {e.errors}")
 except APIError as e:
     print(f"API error: {e.status_code} - {e.message}")
-except TimeoutError:
+except NutrientTimeoutError:
     print("Request timed out")
 except FileProcessingError as e:
     print(f"File processing failed: {e}")

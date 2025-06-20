@@ -5,7 +5,54 @@ All notable changes to the nutrient-dws Python client library will be documented
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.0] - 2024-06-17
+## [1.0.1] - 2025-06-20
+
+### Fixed
+
+#### Critical Bug Fixes
+- **Documentation Error**: Fixed README.md to correctly use `NutrientTimeoutError` instead of `TimeoutError` in import examples and exception handling
+- **Exception Naming**: Resolved inconsistency where code exported `NutrientTimeoutError` but documentation referenced `TimeoutError`
+
+#### CI/Testing Improvements
+- **Test Collection**: Fixed pytest collection failures in CI environments with proper setuptools configuration
+- **TOML Configuration**: Removed duplicate setuptools configuration that caused parsing errors during installation
+- **Type Checking**: Resolved mypy errors across all modules with proper type annotations
+- **Linting**: Fixed all ruff linting issues (W292, W293, RUF034, SIM115, B017, E501)
+- **Test Dependencies**: Simplified test suite to remove problematic mock dependencies
+
+### Added
+
+#### Testing Infrastructure
+- **Comprehensive Unit Tests**: Added 31 unit tests covering all major components:
+  - HTTP client tests (5 tests)
+  - File handler tests (5 tests) 
+  - Builder API tests (5 tests)
+  - Exception handling tests
+  - Client functionality tests
+- **Integration Test Framework**: Added CI workflow for integration testing against live API
+  - Runs on all Python versions (3.8-3.12)
+  - Secure API key handling via GitHub secrets
+  - Automatic config cleanup after tests
+  - Basic smoke test for API connectivity
+
+#### Development Quality
+- **Repository Setup**: Enhanced GitHub repository with proper badges, issue templates, and documentation
+- **CI Pipeline**: Improved CI workflow with better error handling and debugging capabilities
+
+### Changed
+
+#### Internal Improvements
+- **Error Handling**: Improved error messages and exception context throughout the codebase
+- **Code Quality**: Applied consistent formatting and linting across all files
+- **Type Safety**: Enhanced type annotations for better IDE support and static analysis
+
+### Technical Details
+- All tests now pass on Python 3.8-3.12
+- CI pipeline is stable and reliable
+- Integration tests provide continuous API validation
+- Code coverage and quality metrics are consistently tracked
+
+## [1.0.0] - 2025-06-17
 
 ### Added
 

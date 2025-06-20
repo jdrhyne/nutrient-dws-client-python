@@ -1,10 +1,10 @@
 # Nutrient DWS Python Client
 
-[![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![Coverage](https://img.shields.io/badge/coverage-92%25-brightgreen.svg)](https://github.com/jdrhyne/nutrient-dws-client-python/actions)
+[![PyPI version](https://badge.fury.io/py/nutrient-dws.svg)](https://pypi.org/project/nutrient-dws/)
+[![Python versions](https://img.shields.io/pypi/pyversions/nutrient-dws.svg)](https://pypi.org/project/nutrient-dws/)
+[![Downloads](https://static.pepy.tech/badge/nutrient-dws)](https://pepy.tech/project/nutrient-dws)
+[![Coverage](https://img.shields.io/badge/coverage-94%25-brightgreen.svg)](https://github.com/PSPDFKit/nutrient-dws-client-python/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![PyPI version](https://img.shields.io/pypi/v/nutrient-dws.svg)](https://pypi.org/project/nutrient-dws/)
 
 A Python client library for the [Nutrient Document Web Services (DWS) API](https://www.nutrient.io/). This library provides a Pythonic interface to interact with Nutrient's document processing services, supporting both Direct API calls and Builder API workflows.
 
@@ -252,7 +252,7 @@ Note: See [SUPPORTED_OPERATIONS.md](SUPPORTED_OPERATIONS.md) for detailed docume
 
 ```bash
 # Clone the repository
-git clone https://github.com/jdrhyne/nutrient-dws-client-python.git
+git clone https://github.com/PSPDFKit/nutrient-dws-client-python.git
 cd nutrient-dws-client-python
 
 # Install in development mode
@@ -281,6 +281,10 @@ pytest --cov=nutrient --cov-report=html
 pytest tests/unit/test_client.py
 ```
 
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for detailed release notes and version history.
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
@@ -299,4 +303,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - 📧 Email: support@nutrient.io
 - 📚 Documentation: https://www.nutrient.io/docs/
-- 🐛 Issues: https://github.com/jdrhyne/nutrient-dws-client-python/issues
+- 🐛 Issues: https://github.com/PSPDFKit/nutrient-dws-client-python/issues

@@ -43,8 +43,8 @@ jobs:
     - name: Run type checking with mypy
       run: python -m mypy --python-version=${{ matrix.python-version }} src tests
 
-    - name: Run tests with pytest
-      run: python -m pytest -v --cov=nutrient_dws --cov-report=xml --cov-report=term
+    - name: Run unit tests with pytest
+      run: python -m pytest tests/unit/ -v --cov=nutrient_dws --cov-report=xml --cov-report=term
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v4
@@ -54,6 +54,62 @@ jobs:
         flags: unittests
         name: codecov-umbrella
         fail_ci_if_error: false
+
+  integration-test:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    strategy:
+      matrix:
+        python-version: ['3.8', '3.9', '3.10', '3.11', '3.12']
+    
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Cache pip dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('pyproject.toml') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e ".[dev]"
+
+    - name: Check for API key availability
+      run: |
+        if [ -z "${{ secrets.NUTRIENT_DWS_API_KEY }}" ]; then
+          echo "::warning::NUTRIENT_DWS_API_KEY secret not found, skipping integration tests"
+          echo "skip_tests=true" >> $GITHUB_ENV
+        else
+          echo "skip_tests=false" >> $GITHUB_ENV
+        fi
+
+    - name: Create integration config with API key
+      if: env.skip_tests != 'true'
+      run: |
+        python -c "
+        import os
+        with open('tests/integration/integration_config.py', 'w') as f:
+            f.write(f'API_KEY = \"{os.environ[\"NUTRIENT_DWS_API_KEY\"]}\"\n')
+        "
+      env:
+        NUTRIENT_DWS_API_KEY: ${{ secrets.NUTRIENT_DWS_API_KEY }}
+
+    - name: Run integration tests
+      if: env.skip_tests != 'true'
+      run: python -m pytest tests/integration/ -v
+
+    - name: Cleanup integration config
+      if: always()
+      run: rm -f tests/integration/integration_config.py
 
   build:
     runs-on: ubuntu-latest

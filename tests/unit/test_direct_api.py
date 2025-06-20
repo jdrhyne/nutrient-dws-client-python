@@ -299,8 +299,10 @@ class TestDirectAPIFileTypes:
             temp_file.write(b"test content")
             temp_file.seek(0)
 
-            self.client.rotate_pages(cast(BinaryIO, temp_file), degrees=90)
-            mock_process.assert_called_once_with("rotate-pages", cast(BinaryIO, temp_file), None, degrees=90)
+            self.client.rotate_pages(cast("BinaryIO", temp_file), degrees=90)
+            mock_process.assert_called_once_with(
+                "rotate-pages", cast("BinaryIO", temp_file), None, degrees=90
+            )
 
 
 class TestDirectAPIErrorHandling:

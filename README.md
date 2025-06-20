@@ -252,7 +252,7 @@ Note: See [SUPPORTED_OPERATIONS.md](SUPPORTED_OPERATIONS.md) for detailed docume
 
 ```bash
 # Clone the repository
-git clone https://github.com/jdrhyne/nutrient-dws-client-python.git
+git clone https://github.com/PSPDFKit/nutrient-dws-client-python.git
 cd nutrient-dws-client-python
 
 # Install in development mode
@@ -303,4 +303,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - 📧 Email: support@nutrient.io
 - 📚 Documentation: https://www.nutrient.io/docs/
-- 🐛 Issues: https://github.com/jdrhyne/nutrient-dws-client-python/issues
+- 🐛 Issues: https://github.com/PSPDFKit/nutrient-dws-client-python/issues

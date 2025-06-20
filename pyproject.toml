@@ -52,10 +52,10 @@ docs = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/jdrhyne/nutrient-dws-client-python"
+Homepage = "https://github.com/PSPDFKit/nutrient-dws-client-python"
 Documentation = "https://nutrient-dws-client-python.readthedocs.io"
-Repository = "https://github.com/jdrhyne/nutrient-dws-client-python"
-"Bug Tracker" = "https://github.com/jdrhyne/nutrient-dws-client-python/issues"
+Repository = "https://github.com/PSPDFKit/nutrient-dws-client-python"
+"Bug Tracker" = "https://github.com/PSPDFKit/nutrient-dws-client-python/issues"
 
 [tool.setuptools.package-data]
 nutrient_dws = ["py.typed"]

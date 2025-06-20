@@ -74,7 +74,7 @@ class TestPrepareFileInput:
             temp_file.write(content)
             temp_file.seek(0)
 
-            result, filename = prepare_file_input(cast(BinaryIO, temp_file))
+            result, filename = prepare_file_input(cast("BinaryIO", temp_file))
             assert result == content
             assert filename == os.path.basename(temp_file.name)
 
@@ -84,7 +84,7 @@ class TestPrepareFileInput:
         string_file = io.StringIO(string_content)
         string_file.name = "test.txt"
 
-        result, filename = prepare_file_input(cast(BinaryIO, string_file))
+        result, filename = prepare_file_input(cast("BinaryIO", string_file))
         assert result == string_content.encode()
         assert filename == "test.txt"
 
@@ -112,10 +112,9 @@ class TestPrepareFileInput:
             temp_file.seek(0)
 
             # Mock the name to be a path-like object
-            original_name = temp_file.name
             temp_file.name = Path(temp_file.name)  # type: ignore
 
-            result, filename = prepare_file_input(cast(BinaryIO, temp_file))
+            result, filename = prepare_file_input(cast("BinaryIO", temp_file))
             assert result == content
             assert filename == os.path.basename(str(temp_file.name))
 
@@ -426,7 +425,7 @@ class TestGetFileSize:
             temp_file.write(content)
             temp_file.seek(5)  # Move to middle of file
 
-            size = get_file_size(cast(BinaryIO, temp_file))
+            size = get_file_size(cast("BinaryIO", temp_file))
             assert size == len(content)
 
             # Verify position was restored

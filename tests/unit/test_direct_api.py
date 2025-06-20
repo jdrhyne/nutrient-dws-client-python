@@ -1,6 +1,7 @@
 """Comprehensive unit tests for Direct API methods."""
 
 import tempfile
+from typing import BinaryIO, cast
 from unittest.mock import Mock, patch
 
 import pytest
@@ -195,9 +196,9 @@ class TestDirectAPIMethods:
         ]
 
         # Mock HTTP client
-        self.client._http_client.post = Mock(return_value=self.mock_response)
+        self.client._http_client.post = Mock(return_value=self.mock_response)  # type: ignore
 
-        result = self.client.merge_pdfs(["file1.pdf", "file2.pdf"])
+        result = self.client.merge_pdfs(["file1.pdf", "file2.pdf"])  # type: ignore[arg-type]
 
         assert result == self.mock_response
         assert mock_prepare.call_count == 2
@@ -221,7 +222,7 @@ class TestDirectAPIMethods:
         ]
 
         # Mock HTTP client
-        self.client._http_client.post = Mock(return_value=self.mock_response)
+        self.client._http_client.post = Mock(return_value=self.mock_response)  # type: ignore
 
         result = self.client.merge_pdfs(["file1.pdf", "file2.pdf"], "merged.pdf")
 
@@ -247,10 +248,10 @@ class TestDirectAPIMethods:
         ]
 
         # Mock HTTP client
-        self.client._http_client.post = Mock(return_value=self.mock_response)
+        self.client._http_client.post = Mock(return_value=self.mock_response)  # type: ignore
 
         files = ["file1.pdf", "file2.pdf", "file3.pdf"]
-        result = self.client.merge_pdfs(files)
+        result = self.client.merge_pdfs(files)  # type: ignore[arg-type]
 
         assert result == self.mock_response
         assert mock_prepare.call_count == 3
@@ -298,8 +299,8 @@ class TestDirectAPIFileTypes:
             temp_file.write(b"test content")
             temp_file.seek(0)
 
-            self.client.rotate_pages(temp_file, degrees=90)
-            mock_process.assert_called_once_with("rotate-pages", temp_file, None, degrees=90)
+            self.client.rotate_pages(cast(BinaryIO, temp_file), degrees=90)
+            mock_process.assert_called_once_with("rotate-pages", cast(BinaryIO, temp_file), None, degrees=90)
 
 
 class TestDirectAPIErrorHandling:
@@ -456,9 +457,9 @@ class TestDirectAPIBoundaryConditions:
         ]
 
         # Mock HTTP client
-        self.client._http_client.post = Mock(return_value=b"merged_result")
+        self.client._http_client.post = Mock(return_value=b"merged_result")  # type: ignore
 
-        result = self.client.merge_pdfs(files)
+        result = self.client.merge_pdfs(files)  # type: ignore[arg-type]
 
         assert result == b"merged_result"
         assert mock_prepare.call_count == 10

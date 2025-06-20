@@ -14,7 +14,7 @@ version = "1.0.1"
 description = "Python client library for Nutrient Document Web Services API"
 readme = "README.md"
 requires-python = ">=3.8"
-license = {text = "MIT"}
+license = "MIT"
 authors = [
     {name = "Nutrient", email = "support@nutrient.io"},
 ]
@@ -22,7 +22,6 @@ keywords = ["nutrient", "pdf", "document", "processing", "api", "client"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",

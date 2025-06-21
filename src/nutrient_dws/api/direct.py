@@ -443,10 +443,16 @@ class DirectAPIMixin:
         for page_index in page_indexes:
             if page_index < 0:
                 # For negative indexes, use the index directly (API supports negative indexes)
-                parts.append({"file": "file", "pages": {"start": page_index, "end": page_index + 1}})
+                parts.append({
+                    "file": "file",
+                    "pages": {"start": page_index, "end": page_index + 1}
+                })
             else:
                 # For positive indexes, create single-page range (end is exclusive)
-                parts.append({"file": "file", "pages": {"start": page_index, "end": page_index + 1}})
+                parts.append({
+                    "file": "file",
+                    "pages": {"start": page_index, "end": page_index + 1}
+                })
 
         # Build instructions for duplication
         instructions = {"parts": parts, "actions": []}

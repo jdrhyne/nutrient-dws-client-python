@@ -394,9 +394,10 @@ class DirectAPIMixin:
 
         Args:
             input_file: Input PDF file.
-            page_indexes: List of page indexes to include (0-based).
+            page_indexes: List of page indexes to include (0-based indexing).
                          Pages can be repeated to create duplicates.
                          Negative indexes are supported (-1 for last page).
+                         Note: Uses 0-based indexing where 0 = first page.
             output_path: Optional path to save the output file.
 
         Returns:
@@ -411,7 +412,7 @@ class DirectAPIMixin:
             # Duplicate first page twice, then include second page
             result = client.duplicate_pdf_pages(
                 "document.pdf",
-                page_indexes=[0, 0, 1]  # Page 1, Page 1, Page 2
+                page_indexes=[0, 0, 1]  # Index 0, Index 0, Index 1 (0-based)
             )
 
             # Include last page at beginning and end
@@ -423,7 +424,7 @@ class DirectAPIMixin:
             # Save to specific file
             client.duplicate_pdf_pages(
                 "document.pdf",
-                page_indexes=[0, 2, 1],  # Reorder: Page 1, Page 3, Page 2
+                page_indexes=[0, 2, 1],  # Reorder: Index 0, Index 2, Index 1 (0-based)
                 output_path="reordered.pdf"
             )
         """
@@ -442,10 +443,10 @@ class DirectAPIMixin:
         for page_index in page_indexes:
             if page_index < 0:
                 # For negative indexes, use the index directly (API supports negative indexes)
-                parts.append({"file": "file", "pages": {"start": page_index, "end": page_index}})
+                parts.append({"file": "file", "pages": {"start": page_index, "end": page_index + 1}})
             else:
-                # For positive indexes, create single-page range
-                parts.append({"file": "file", "pages": {"start": page_index, "end": page_index}})
+                # For positive indexes, create single-page range (end is exclusive)
+                parts.append({"file": "file", "pages": {"start": page_index, "end": page_index + 1}})
 
         # Build instructions for duplication
         instructions = {"parts": parts, "actions": []}
@@ -478,8 +479,9 @@ class DirectAPIMixin:
 
         Args:
             input_file: Input PDF file.
-            page_indexes: List of page indexes to delete (0-based).
+            page_indexes: List of page indexes to delete (0-based indexing).
                          Negative indexes are not currently supported.
+                         Note: Uses 0-based indexing where 0 = first page.
             output_path: Optional path to save the output file.
 
         Returns:
@@ -491,16 +493,16 @@ class DirectAPIMixin:
             ValueError: If page_indexes is empty or contains negative indexes.
 
         Examples:
-            # Delete first and last pages (Note: negative indexes not supported)
+            # Delete first and third pages (Note: negative indexes not supported)
             result = client.delete_pdf_pages(
                 "document.pdf",
-                page_indexes=[0, 2]  # Delete pages 1 and 3
+                page_indexes=[0, 2]  # Delete indexes 0 and 2 (0-based)
             )
 
-            # Delete specific pages (2nd and 4th pages)
+            # Delete specific pages (second and fourth pages)
             result = client.delete_pdf_pages(
                 "document.pdf",
-                page_indexes=[1, 3]  # 0-based indexing
+                page_indexes=[1, 3]  # Delete indexes 1 and 3 (0-based)
             )
 
             # Save to specific file
@@ -591,6 +593,7 @@ class DirectAPIMixin:
                          0 = insert before first page (at beginning)
                          1 = insert before second page (after first page)
                          -1 = insert after last page (at end)
+                         Note: Uses 0-based indexing for insertion position.
             page_count: Number of blank pages to add (default: 1).
             page_size: Page size for new pages. Common values: "A4", "Letter",
                       "Legal", "A3", "A5" (default: "A4").

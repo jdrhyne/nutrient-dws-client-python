@@ -223,7 +223,7 @@ class TestHTTPClientErrorHandling:
         mock_response.text = '{"message": "Validation failed", "details": "Invalid file format"}'
         mock_response.json.return_value = {
             "message": "Validation failed",
-            "details": "Invalid file format"
+            "details": "Invalid file format",
         }
         mock_response.raise_for_status.side_effect = requests.exceptions.HTTPError()
         mock_request.return_value = mock_response
@@ -290,8 +290,6 @@ class TestHTTPClientResponseHandling:
 
         result = self.client.post("/test")
         assert result == b""
-
-
 
 
 class TestHTTPClientContextManager:

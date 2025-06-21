@@ -1,0 +1,18 @@
+MYPY FIX INSTRUCTIONS
+====================
+
+The CI is failing because mypy doesn't recognize the dynamically created integration_config module.
+
+TO FIX:
+1. Go to the PR files: https://github.com/PSPDFKit/nutrient-dws-client-python/pull/5/files
+2. Click on "tests/integration/test_smoke.py"
+3. Click the pencil icon to edit
+4. Replace the entire content with the content from "test_smoke_fixed.py" in this folder
+5. Commit with message: "fix: add type ignore for dynamic integration config import"
+
+WHAT CHANGED:
+- Added "from typing import Optional" import
+- Added type annotation: API_KEY: Optional[str] = None
+- Added type ignore comment: # type: ignore[attr-defined]
+
+This tells mypy to ignore the fact that integration_config doesn't exist at type-check time since it's created dynamically during test runs.

@@ -145,7 +145,7 @@ class TestDirectAPIMethods:
             width=150,
             height=75,
             opacity=0.5,
-            position="top-right"
+            position="top-right",
         )
 
         assert result == self.mock_response
@@ -299,9 +299,9 @@ class TestDirectAPIFileTypes:
             temp_file.write(b"test content")
             temp_file.seek(0)
 
-            self.client.rotate_pages(cast("BinaryIO", temp_file), degrees=90)
+            self.client.rotate_pages(cast(BinaryIO, temp_file), degrees=90)
             mock_process.assert_called_once_with(
-                "rotate-pages", cast("BinaryIO", temp_file), None, degrees=90
+                "rotate-pages", cast(BinaryIO, temp_file), None, degrees=90
             )
 
 
@@ -417,9 +417,13 @@ class TestDirectAPIBoundaryConditions:
         mock_process.return_value = b"result"
 
         positions = [
-            "top-left", "top-center", "top-right",
+            "top-left",
+            "top-center",
+            "top-right",
             "center",
-            "bottom-left", "bottom-center", "bottom-right"
+            "bottom-left",
+            "bottom-center",
+            "bottom-right",
         ]
 
         for position in positions:
@@ -454,8 +458,7 @@ class TestDirectAPIBoundaryConditions:
 
         # Mock file preparation
         mock_prepare.side_effect = [
-            (f"file{i}", (f"file{i}", f"content{i}".encode(), "application/pdf"))
-            for i in range(10)
+            (f"file{i}", (f"file{i}", f"content{i}".encode(), "application/pdf")) for i in range(10)
         ]
 
         # Mock HTTP client

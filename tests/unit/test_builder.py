@@ -77,7 +77,7 @@ class TestBuilderAddStep:
             "width": 200,
             "height": 100,
             "opacity": 0.5,
-            "position": "center"
+            "position": "center",
         }
         result = self.builder.add_step("watermark-pdf", options=options)
 
@@ -201,7 +201,7 @@ class TestBuilderOutputOptions:
             "author": "Test Author",
             "subject": "Test Subject",
             "keywords": ["test", "document", "processing"],
-            "custom": {"version": "1.0", "department": "Engineering"}
+            "custom": {"version": "1.0", "department": "Engineering"},
         }
         result = self.builder.set_output_options(metadata=metadata)
 
@@ -264,7 +264,7 @@ class TestBuilderToolToActionMapping:
             "width": 300,
             "height": 150,
             "opacity": 0.7,
-            "position": "top-right"
+            "position": "top-right",
         }
         self.builder.add_step("watermark-pdf", options=options)
         action = self.builder._actions[0]
